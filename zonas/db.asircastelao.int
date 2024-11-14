@@ -1,14 +1,14 @@
 $TTL 38400	; 10 hours 40 minutes
-@		IN SOA	ns.iago.int. some.email.address. (
+@		IN SOA	ns.asircastelao.int. some.email.address. (
 				10000002   ; serial
 				10800      ; refresh 
 				3600       ; retry 
 				604800     ; expire 
 				38400      ; minimum 
 				)
-@		IN NS	ns.iago.int.
-ns		IN A		172.29.6.1
-test	IN A		172.29.6.4
-www		IN A		172.29.6.7
-alias	IN CNAME	Practica7
+@		IN NS	ns.asircastelao.int.
+ns		IN A		192.28.5.1
+test	IN A		192.28.5.4
+www		IN A		192.28.5.7
+alias	IN CNAME	rodriguezzz
 texto	IN TXT		ejercicio

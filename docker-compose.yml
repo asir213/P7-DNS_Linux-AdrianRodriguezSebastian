@@ -1,36 +1,37 @@
 services:
-  bind9:
-    container_name: rodriguezzzserver
-    image: internetsystemsconsortium/bind9:9.18
+  rodriguezzz_bind9:
+    container_name: rodriguezzz_bind9
+    image: ubuntu/bind9
     platform: linux/amd64
     ports:
-      - 55:53/tcp
-      - 55:53/udp
+      - "54:53"  # Exponer el puerto 54 para que otros puedan hacer consultas DNS
     networks:
-      rodriguezzz_subnet:
-        ipv4_address: 172.29.6.1
+      bind9_subnet:
+        ipv4_address: 192.28.5.1  # IP estática del servidor DNS
     volumes:
-      - ./conf:/etc/bind
-      - ./zonas:/var/lib/bind
-    restart: always
+      - ./conf:/etc/bind/  # Montar la configuración del servidor BIND
+      - ./zonas:/var/lib/bind/  # Montar el directorio de zonas
+    restart: unless-stopped  # Reiniciar el contenedor si falla o si Docker se reinicia
+
   cliente:
-    container_name: cliente2
+    container_name: rodriguezzz_alpine
     image: alpine
     platform: linux/amd64
     tty: true
     stdin_open: true
-    # configuramos para que el cliente use nuestro dns
     dns:
-      - 172.29.6.1
+      - 192.28.5.1  # El cliente usará el DNS del servidor asir_bind9
     networks:
-      rodriguezzz_subnet:
-        ipv4_address: 172.29.6.2
-        
+      bind9_subnet:
+        ipv4_address: 192.28.5.2  # IP estática del cliente en la misma subred
+    restart: unless-stopped  # Asegurarse de que el cliente también se reinicie si falla
+
 networks:
-  rodriguezzz_subnet:
-    driver: bridge
+  bind9_subnet:
+    driver: bridge  # Tipo de red 'bridge'
     ipam:
+     
       config:
-        - subnet: 172.29.0.0/16
-          ip_range: 172.29.6.0/24
-          gateway: 172.29.6.254
+        - subnet: "192.28.0.0/16"  # Definir el rango de subred
+          ip_range: "192.28.5.0/24"  # Rango de IPs para los contenedores
+          gateway: "192.28.5.254"  # Puerta de enlace de la red
