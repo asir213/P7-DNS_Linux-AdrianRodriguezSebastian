@@ -23,11 +23,11 @@ services:
     dns:
       - 172.29.6.1
     networks:
-      alex_subnet:
-        ipv4_address: 172.29.6.1
+      rodriguezzz_subnet:
+        ipv4_address: 172.29.6.2
         
 networks:
-  alex_subnet:
+  rodriguezzz_subnet:
     driver: bridge
     ipam:
       config:
