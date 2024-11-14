@@ -27,21 +27,21 @@ forwarders {
 
 ##**Crear Zona propia**
 **Rexistros a configurar: NS, A, CNAME, TXT, SOA**
-Este apartado configurarase dentro do arquivo db.iago.int dentro do directorio de zonas.
+Este apartado configurarase dentro do arquivo db.asircastelao.int dentro do directorio de zonas.
 
 $TTL 38400	; 10 hours 40 minutes
-@		IN SOA	ns.iago.int. some.email.address. (
+@		IN SOA	ns.asircastelao.int. some.email.address. (
 				10000002   ; serial
 				10800      ; refresh 
 				3600       ; retry 
 				604800     ; expire 
 				38400      ; minimum 
 				)
-@		IN NS	ns.iago.int.
+@		IN NS	ns.asircastelao.int.
 ns		IN A		192.28.5.1
 test	IN A		192.28.5.4
 www		IN A		192.28.5.7
-alias	IN CNAME	Practica7
+alias	IN CNAME	rodriguezzz
 texto	IN TXT		ejercicio
 
 
@@ -51,9 +51,9 @@ texto	IN TXT		ejercicio
 Primeiro configuraremos no .yml o cliente cunha dirección dentro da mesma subrede e a dirección do servidor na parte de DNS.
 Unha vez feito isto poderemos acceder ao cliente facendo os comandos docker compose up para executar os contenedores e para entrar na terminal do contenedor creado co comando docker exec -it Prac7_alpine /bin/sh, no meu caso Prac7_alpine porque chameis asi ao contenedor do cliente. Posteriormente instalaremos dig para ver se podemos conectarnos de forma correcta. Para instalarlo executaremos o comando apk update && apk add bind-tools.
 
-Por último faremos al consultas necesarios como o comando dig ns.iago.int ou dig 192.28.5.1.
+Por último faremos al consultas necesarios como o comando dig ns.asircastelao.int ou dig 192.28.5.1.
 
-; <<>> DiG 9.18.27 <<>> ns.iago.int
+; <<>> DiG 9.18.27 <<>> ns.asircastelao.int
 ;; global options: +cmd
 ;; Got answer:
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 15843
@@ -63,10 +63,10 @@ Por último faremos al consultas necesarios como o comando dig ns.iago.int ou di
 ; EDNS: version: 0, flags:; udp: 1232
 ; COOKIE: 8906064d2c684f2f01000000673631a4a0d937572e58c05a (good)
 ;; QUESTION SECTION:
-;ns.iago.int.			IN	A
+;ns.asircastelao.int.			IN	A
 
 ;; ANSWER SECTION:
-ns.iago.int.		38400	IN	A	192.28.5.1
+ns.asircastelao.int.		38400	IN	A	192.28.5.1
 
 ;; Query time: 0 msec
 ;; SERVER: 127.0.0.11#53(127.0.0.11) (UDP)
