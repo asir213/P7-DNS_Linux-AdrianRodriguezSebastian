@@ -1,0 +1,4 @@
+zone "asircastelao.int" {
+    type master;
+    file "/etc/bind/db.asircastelao.com";   # Archivo con los registros DNS de la zona
+};
